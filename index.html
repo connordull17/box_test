@@ -16,8 +16,20 @@
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
 
-    
-</script>
+    var box = {
+    	x: 300,
+    	y: 200,
+    	size: 20,
+    	color: "black"
+    }
 
+    function drawBox(){
+    	context.fillStyle = box.color;
+      	context.fillRect(box.x, box.y, box.size, box.size);
+    }
+
+    drawBox();
+
+</script>
 </body>
 </html>
