@@ -15,21 +15,35 @@
 <script type="text/javascript">
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
+    var boxes = [];
 
-    var box = {
-    	x: 300,
-    	y: 200,
-    	size: 20,
-    	color: "black"
+    function createBox(){
+    	return {
+    		x: 300,
+    		y: 200,
+    		size: 20,
+    		color: "red"
+    	}
     }
+
+ 	function createBoxes(n){
+		for(i=0; i<n; i++){
+ 			boxes.push(createBox());
+ 		}
+ 		console.log(boxes);
+ 	}
 
     function drawBox(){
     	context.fillStyle = box.color;
       	context.fillRect(box.x, box.y, box.size, box.size);
+    	 for(i=0; i<boxes.length; i++){
+ 			context.fillStyle = boxes[i].color;
+ 			context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size)
+ 		}
     }
-
+    var box = createBox();
+    createBoxes(3);
     drawBox();
-
 </script>
 </body>
 </html>
