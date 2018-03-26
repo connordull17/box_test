@@ -55,8 +55,18 @@
  		}
     }
 
+    function time(){
+    	if(boxes.duration < 0){
+    		context.clearRect(0,0,canvas.width,
+    			canvas.height)
+    	}else{
+    		boxes.duration--;
+    	}
+    }
+
     createBoxes(3);
     drawBox();
+    time();
     console.log(duration);
 </script>
 </body>
