@@ -4,13 +4,12 @@
 	<title>box_test</title>
 	<style type="text/css">
     	canvas {
-      		border: solid 1px #000;
-      
+      		background-color: black;    
     	}
   </style>
 </head>
 <body>
-<canvas id="canvas" width="600" height="400"></canvas>
+<canvas id="canvas" width="1343" height="583"></canvas>
 
 <script type="text/javascript">
 	var canvas = document.getElementById("canvas");
@@ -56,18 +55,29 @@
     }
 
     function time(){
-    	if(boxes.duration < 0){
-    		context.clearRect(0,0,canvas.width,
-    			canvas.height)
-    	}else{
-    		boxes.duration--;
+    	for(i = 0; i < boxes.length; i++){
+    		boxes[i].duration -= 1;
     	}
     }
 
-    createBoxes(3);
-    drawBox();
-    time();
-    console.log(duration);
+    function reduceExpiredBoxes(){
+    	for(i = 0; i < boxes.length; i ++){
+    		if(boxes[i].duration <= 0){
+    			boxes.splice(i,1);
+    			createBoxes(1);
+    		}
+    	}
+    }
+
+    function runGame(){
+    	context.clearRect(0,0,canvas.width,canvas.height);
+    	drawBox();
+    	time();
+    	reduceExpiredBoxes();
+    	requestAnimationFrame(runGame);
+    }
+    createBoxes(50); 
+    runGame();
 </script>
 </body>
 </html>
