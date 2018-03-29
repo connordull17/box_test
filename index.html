@@ -4,7 +4,9 @@
 	<title>box_test</title>
 	<style type="text/css">
     	canvas {
-      		background-color: black;    
+      		background-image: url("space4.gif"); 
+      		background-repeat: no-repeat;
+      		background-size: cover;   
     	}
   </style>
 </head>
@@ -15,24 +17,30 @@
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
     var boxes = [];
-    var duration = 200;
+    var game_settings = {
+    	maxSize:35,
+    	numberOfBoxes: 150,
+    	maxDuration: 150
+    }
     var colors = [
     	"red",
     	"blue",
-    	"purple",
+    	"blueviolet ",
     	"yellow",
-    	"orange",
-    	"green",
-    	"pink",
-    	"cyan"
+    	"#FF9933",
+    	"chartreuse ",
+    	"cyan",
+    	"#FF00CC",
+    	"#50BFE6",
+    	"#8B008B"
     ]
 
     function createBox(){
     	return {
     		x: randomNum(canvas.width - 40),
     		y: randomNum(canvas.height - 40),
-    		size: randomNum(35) + 5,
-    		duration: randomNum(200) + 10,
+    		size: randomNum(game_settings.maxSize) + 5,
+    		duration: randomNum(game_settings.maxDuration) + 10,
     		color: colors[randomNum(colors.length)]
     	}
     }
@@ -76,7 +84,7 @@
     	reduceExpiredBoxes();
     	requestAnimationFrame(runGame);
     }
-    createBoxes(50); 
+    createBoxes(150); 
     runGame();
 </script>
 </body>
